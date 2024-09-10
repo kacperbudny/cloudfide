@@ -24,28 +24,21 @@ export function TransactionChart() {
       <Chart
         data={{
           title: {
-            text: "ECharts Getting Started Example",
+            text: "Binance Transaction Chart",
           },
           tooltip: {},
           legend: {
             data: ["sales"],
           },
           xAxis: {
-            data: [
-              "Shirts",
-              "Cardigans",
-              "Chiffons",
-              "Pants",
-              "Heels",
-              "Socks",
-            ],
+            data: currentTransactions.map((value) => value.time),
           },
           yAxis: {},
           series: [
             {
-              name: "sales",
-              type: "bar",
-              data: [5, 20, 36, 10, 10, 20],
+              name: "Price",
+              type: "line",
+              data: currentTransactions.map((value) => value.price),
             },
           ],
         }}
@@ -53,3 +46,5 @@ export function TransactionChart() {
     </div>
   );
 }
+
+function formatDate(date: Date) {}
