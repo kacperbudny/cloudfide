@@ -3,7 +3,8 @@ import { TransactionChart } from "../components/TransactionChart";
 export function MainPage() {
   return (
     <>
-      <TransactionChart />
+      <TransactionChart primarySymbol="BTC" secondarySymbol="USDT" />
+      <TransactionChart primarySymbol="ETH" secondarySymbol="USDT" />
     </>
   );
 }

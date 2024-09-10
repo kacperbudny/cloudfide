@@ -12,7 +12,7 @@ export function useGetCurrentTransactions({ symbol, limit }: Props) {
   const { getCurrentTransactions } = binanceClient;
 
   const { data, isLoading, error } = useQuery({
-    queryKey: [getCurrentTransactions.name],
+    queryKey: [getCurrentTransactions.name, { symbol, limit }],
     queryFn: async () => {
       return await getCurrentTransactions({ symbol, limit });
     },

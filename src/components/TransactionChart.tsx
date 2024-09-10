@@ -1,10 +1,15 @@
 import { useGetCurrentTransactions } from "../hooks/useGetCurrentTransactions";
 import { Chart } from "./Chart";
 
-export function TransactionChart() {
+type Props = {
+  primarySymbol: string;
+  secondarySymbol: string;
+};
+
+export function TransactionChart({ primarySymbol, secondarySymbol }: Props) {
   const { currentTransactions, error, isLoading } = useGetCurrentTransactions({
     limit: 1000,
-    symbol: "BTCUSDT",
+    symbol: primarySymbol + secondarySymbol,
   });
 
   if (isLoading) {
@@ -24,7 +29,7 @@ export function TransactionChart() {
       <Chart
         data={{
           title: {
-            text: "Binance Transaction Chart",
+            text: `Binance Transaction Chart (${primarySymbol} in ${secondarySymbol})`,
           },
           tooltip: {
             trigger: "axis",
@@ -38,7 +43,7 @@ export function TransactionChart() {
             min: Math.min(
               ...currentTransactions.map((value) => Number(value.price))
             ),
-            name: "Price (in USDT)",
+            name: `Price (in ${secondarySymbol})`,
           },
           series: [
             {
