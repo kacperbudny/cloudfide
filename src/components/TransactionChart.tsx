@@ -3,7 +3,7 @@ import { Chart } from "./Chart";
 
 export function TransactionChart() {
   const { currentTransactions, error, isLoading } = useGetCurrentTransactions({
-    limit: 100,
+    limit: 1000,
     symbol: "BTCUSDT",
   });
 
@@ -28,7 +28,9 @@ export function TransactionChart() {
           title: {
             text: "Binance Transaction Chart",
           },
-          tooltip: {},
+          tooltip: {
+            trigger: "axis",
+          },
           xAxis: {
             data: currentTransactions.map((value) =>
               formatDate(new Date(value.time))
@@ -38,6 +40,7 @@ export function TransactionChart() {
             min: Math.min(
               ...currentTransactions.map((value) => Number(value.price))
             ),
+            name: "Price (in USDT)",
           },
           series: [
             {
@@ -54,7 +57,7 @@ export function TransactionChart() {
 
 function formatDate(date: Date) {
   return Intl.DateTimeFormat(undefined, {
-    timeStyle: "full",
+    timeStyle: "short",
     dateStyle: "short",
   }).format(date);
 }
