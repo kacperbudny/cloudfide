@@ -19,8 +19,6 @@ export function TransactionChart() {
     return <span>No data to be displayed</span>;
   }
 
-  console.log(currentTransactions);
-
   return (
     <div className="w-full h-96">
       <Chart

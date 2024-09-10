@@ -6,6 +6,8 @@ type Props = {
   limit: number;
 };
 
+const ONE_MINUTE_IN_MILLISECONDS = 1000 * 60; // this could come as a argument
+
 export function useGetCurrentTransactions({ symbol, limit }: Props) {
   const { getCurrentTransactions } = binanceClient;
 
@@ -14,6 +16,7 @@ export function useGetCurrentTransactions({ symbol, limit }: Props) {
     queryFn: async () => {
       return await getCurrentTransactions({ symbol, limit });
     },
+    refetchInterval: ONE_MINUTE_IN_MILLISECONDS,
   });
 
   return { currentTransactions: data, isLoading, error };
