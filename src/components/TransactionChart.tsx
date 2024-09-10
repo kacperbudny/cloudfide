@@ -13,15 +13,15 @@ export function TransactionChart({ primarySymbol, secondarySymbol }: Props) {
   });
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <span>Something went wrong, please try again</span>;
+    return <div>Something went wrong, please try again</div>;
   }
 
   if (!currentTransactions || currentTransactions.length === 0) {
-    return <span>No data to be displayed</span>;
+    return <div>No data to be displayed</div>;
   }
 
   return (
